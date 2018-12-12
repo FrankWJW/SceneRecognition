@@ -1,7 +1,7 @@
 clc;clear;
 %% Step 1: Tiny image features
 run('vlfeat/toolbox/vl_setup')
-data_path = '../data/';%get image file path
+data_path = '../../data/';%get image file path
 
 %set categories we need
 categories = {'Kitchen', 'Store', 'Bedroom', 'LivingRoom', 'Office', ...
@@ -21,9 +21,10 @@ fprintf('Getting paths and labels for all train and test data\n')
 %   train_labels       1500x1   cell
 %   test_labels        2985x1   cell
 
+%calling nature order sort function
+[test_image_paths,~] = sort_nat(test_image_paths);
+
 fprintf('Using tiny image representation for images\n');
-
-
 
 if ~exist('tiny_images.mat', 'file')
     fprintf('Bag of sifts does not exist for train/test data, Computing one from training/test images\n');

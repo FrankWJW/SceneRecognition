@@ -30,7 +30,7 @@ for i=1:num_categories
 %    end
 
 end
-images = dir( fullfile(data_path,'test_unlabelled','*.jpg'));
+images = dir(fullfile(data_path,'test_unlabelled','*.jpg'));
 for i=1:2985
     test_paths{i} = fullfile(data_path, 'test_unlabelled', images(i).name);
 end
