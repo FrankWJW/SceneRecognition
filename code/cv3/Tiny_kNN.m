@@ -46,3 +46,10 @@ fprintf('Using kNN classifier to predict test set categories\n');
 predicted_labels = kNN_classifier( ...
             train_image_feats, train_labels, test_image_feats, ...
             categories, K);
+        
+%% output predicted_labels into a .txt file
+writeTxt = fopen('run1.txt','wt');
+for i=1:2985
+    fprintf(writeTxt,'%s %s\n',strcat(num2str(i),'.jpg'),char(predicted_labels(i)));
+end
+fclose(writeTxt);

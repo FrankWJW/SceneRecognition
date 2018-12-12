@@ -21,7 +21,8 @@ fprintf('Getting paths and labels for all train and test data\n')
 %   train_labels       1500x1   cell
 %   test_labels        2985x1   cell
 
-
+%calling nature order sort function
+[test_image_paths,~] = sort_nat(test_image_paths);
 
 if ~exist('patch_vocab.mat', 'file')
     fprintf('No existing visual word vocabulary found. Computing one from training images\n');
@@ -56,3 +57,9 @@ fprintf('Using SVM classifier to predict test set categories');
 predicted_categories = SVM_classifier(train_image_feats, ...
             train_labels, test_image_feats, categories, ...
             svm_lambda, svm_iterations);
+%% output predicted_labels into a .txt file
+writeTxt = fopen('run2.txt','wt');
+for i=1:2985
+    fprintf(writeTxt,'%s %s\n',strcat(num2str(i),'.jpg'),char(predicted_labels(i)));
+end
+fclose(writeTxt);
