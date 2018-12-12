@@ -58,7 +58,7 @@ for i=1:test_N
     
     distances = zeros(train_N,1);
     for j=1:train_N
-        distances(j) = vl_alldist2(test_image_feats(i,:)', train_image_feats(j,:)', 'l2');
+        distances(j) = vl_alldist2(test_image_feats(i,:)', train_image_feats(j,:)', 'l2');%calculating the L2 norm
     end    
     
     % note that idx is the list of indeces
