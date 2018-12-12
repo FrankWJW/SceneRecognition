@@ -6,7 +6,7 @@
 %  Transactions on Pattern Analysis and Machine Intelligence, vol.30(11),
 %  pp. 1958-1970, 2008. http://groups.csail.mit.edu/vision/TinyImages/
 
-function image_feats = get_tiny_images(image_paths, file_name)
+function image_feats = get_tiny_images(image_paths, ~)
 % image_paths is an N x 1 cell array of strings where each string is an
 %  image path on the file system.
 % image_feats is an N x d matrix of resized and then vectorized tiny
@@ -35,7 +35,7 @@ for i=1:N
     min_side = min([img_h img_w]);
     % crop it
     crop_rect = [floor((img_w - min_side)/2), floor((img_h - min_side)/2),  min_side, min_side];
-    img_cropped = imcrop(img, crop_rect);
+    img_cropped = imcrop(img, crop_rect);%imcrop(img,[xmin ymin width height])
     % resize it
     img_resized = imresize(img_cropped, [D D]);
     % convet to 1D array
