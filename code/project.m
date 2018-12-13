@@ -26,8 +26,8 @@ CLASSIFIER = CLASSIFIERS{2};
 %number of training examples per category to use. Max is 100. For
 %simplicity, we assume this is the number of test cases per category, as
 %well.
-num_train_per_cat = 100;
-
+num_train_per_cat = 90;
+num_test_per_cat = 10;
 % set up paths to VLFeat functions.
 % See http://www.vlfeat.org/matlab/matlab.html for VLFeat Matlab documentation
 % This should work on 32 and 64 bit versions of Windows, MacOS, and Linux
@@ -52,7 +52,7 @@ abbr_categories = {'Kit', 'Sto', 'Bed', 'Liv', 'Off', 'Ind', 'Sub', ...
 %entry is a char array (or string).
 fprintf('Getting paths and labels for all train and test data\n')
 [train_image_paths, test_image_paths, train_labels, test_labels] = ...
-    get_image_paths(data_path, categories, num_train_per_cat);
+    get_image_paths(data_path, categories, num_train_per_cat,num_test_per_cat);
 %   train_image_paths  1500x1   cell
 %   test_image_paths   1500x1   cell
 %   train_labels       1500x1   cell
@@ -74,7 +74,7 @@ switch lower(FEATURE)
         svm_lambda = 0.0001;
         % after many validations, this is the best k value
         % for k-NN classifier when tiny-image is used
-        neighbors_count = 6;
+        neighbors_count = 100;
         % YOU CODE get_tiny_images.m
         if ~exist('tiny_images.mat', 'file')
             fprintf('Bag of sifts does not exist for train/test data, Computing one from training/test images\n');
@@ -87,7 +87,7 @@ switch lower(FEATURE)
     case 'bag of patch'
         % best parameter values for svm classifier
         % to classify bag-of-patch
-        svm_iterations = 100 * 1000;
+        svm_iterations = 100 * 10000;
         svm_lambda = 0.00001;
         % after many validations, this is the best k value
         % for k-NN classifier when bag-of-patch us used
@@ -96,9 +96,9 @@ switch lower(FEATURE)
         if ~exist('patch_vocab.mat', 'file')
             fprintf('No existing visual word vocabulary found. Computing one from training images\n');
             %Larger values will work better (to a point) but be slower to compute
-            patch_vocab_size = 500;
+            patch_vocab_size = 800;
             patch_size = 8;
-            patch_stride = 24;
+            patch_stride = 10;
             patch_vocab = build_patch_vocabulary(train_image_paths, patch_vocab_size, patch_size, patch_stride);
             save('patch_vocab.mat', 'patch_vocab');
         else
@@ -106,7 +106,7 @@ switch lower(FEATURE)
         end
         % YOU CODE get_bags_of_patch.m
         patch_size = 8;
-        patch_stride = 16;
+        patch_stride = 10;
         if ~exist('image_patch_feats.mat', 'file')
             fprintf('Bag of patches does not exist for train/test data, Computing one from training/test images\n');
             train_image_feats = get_bags_of_patch(train_image_paths, patch_vocab, patch_size, patch_stride);
