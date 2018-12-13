@@ -15,13 +15,13 @@
 %code does not crash when run unmodified and you can get a preview of how
 %results are presented.
 
-clc;
+clc;clear;
 
 FEATURES = {'tiny image', 'bag of patch', 'bag of sift', 'bag of phow', 'placeholder'};
-FEATURE = FEATURES{1};
+FEATURE = FEATURES{2};
 
 CLASSIFIERS = {'k nearest neighbor', 'support vector machine', 'placeholder'};
-CLASSIFIER = CLASSIFIERS{1};
+CLASSIFIER = CLASSIFIERS{2};
 
 %number of training examples per category to use. Max is 100. For
 %simplicity, we assume this is the number of test cases per category, as
@@ -96,7 +96,7 @@ switch lower(FEATURE)
         if ~exist('patch_vocab.mat', 'file')
             fprintf('No existing visual word vocabulary found. Computing one from training images\n');
             %Larger values will work better (to a point) but be slower to compute
-            patch_vocab_size = 100;
+            patch_vocab_size = 500;
             patch_size = 8;
             patch_stride = 24;
             patch_vocab = build_patch_vocabulary(train_image_paths, patch_vocab_size, patch_size, patch_stride);
