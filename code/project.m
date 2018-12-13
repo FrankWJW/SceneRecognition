@@ -18,10 +18,10 @@
 clc;
 
 FEATURES = {'tiny image', 'bag of patch', 'bag of sift', 'bag of phow', 'placeholder'};
-FEATURE = FEATURES{1};
+FEATURE = FEATURES{2};
 
 CLASSIFIERS = {'k nearest neighbor', 'support vector machine', 'placeholder'};
-CLASSIFIER = CLASSIFIERS{1};
+CLASSIFIER = CLASSIFIERS{2};
 
 %number of training examples per category to use. Max is 100. For
 %simplicity, we assume this is the number of test cases per category, as
