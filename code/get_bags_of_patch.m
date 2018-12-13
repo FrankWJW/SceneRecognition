@@ -98,7 +98,6 @@ for i=1:N
     % add it to the features matrix
     image_feats(i,:) = img_histo;
 end
-
 end
 
 
