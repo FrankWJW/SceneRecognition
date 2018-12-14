@@ -96,6 +96,7 @@ for i=1:N
     % while the next is the correct one
     img_histo = img_histo/norm(img_histo);
     % add it to the features matrix
+    
     image_feats(i,:) = img_histo;
 end
 end
