@@ -74,7 +74,7 @@ switch lower(FEATURE)
         svm_lambda = 0.0001;
         % after many validations, this is the best k value
         % for k-NN classifier when tiny-image is used
-        neighbors_count = 100;
+        neighbors_count = 20;
         % YOU CODE get_tiny_images.m
         if ~exist('tiny_images.mat', 'file')
             fprintf('Bag of sifts does not exist for train/test data, Computing one from training/test images\n');
@@ -96,7 +96,7 @@ switch lower(FEATURE)
         if ~exist('patch_vocab.mat', 'file')
             fprintf('No existing visual word vocabulary found. Computing one from training images\n');
             %Larger values will work better (to a point) but be slower to compute
-            patch_vocab_size = 800;
+            patch_vocab_size = 500;
             patch_size = 8;
             patch_stride = 10;
             patch_vocab = build_patch_vocabulary(train_image_paths, patch_vocab_size, patch_size, patch_stride);

@@ -43,8 +43,12 @@ for i=1:N
     % and we want to concatenate matrix rows, that's why
     % img_resized is transposed before reshaped
     img_array = reshape(img_resized',1,[]);
-    image_feats(i,:) = img_array;
     
+    img_array = im2double(img_array);
+    %normalise image
+    img_array = (img_array-mean(img_array))/var(img_array);
+    image_feats(i,:) = img_array;
+    image_feats = uint8(image_feats);
     % for testing
     %     figure(1); clf;
     %     imshow(img);

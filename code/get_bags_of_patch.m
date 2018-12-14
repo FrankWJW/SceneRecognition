@@ -95,9 +95,14 @@ for i=1:N
     % the wrong way: img_histo = img_histo ./ sum(img_histo)
     % while the next is the correct one
     img_histo = img_histo/norm(img_histo);
-    % add it to the features matrix
+    % add it to the features
+    matrix
+    img_histo = im2double(img_histo);
+    %normalise image
+    img_histo = (img_histo-mean(img_histo))/var(img_histo);
     image_feats(i,:) = img_histo;
 end
+    image_feats = uint8(image_feats);
 end
 
 
